@@ -1,0 +1,388 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f2e9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+.header {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+/* 主要内容区域 */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* 输入区域 */
+.input-section {
+    flex: 1;
+    min-width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #2c3e50;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-label input {
+    margin-right: 5px;
+}
+
+.btn {
+    padding: 12px 20px;
+    background-color: #e67e22;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #d35400;
+}
+
+.btn-generate {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* 图表区域 */
+.chart-section {
+    flex: 2;
+    min-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chart-info {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.chart-info p {
+    margin-bottom: 5px;
+}
+
+/* 奇门盘样式 */
+.qimen-chart {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.qimen-cell {
+    position: relative;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    min-height: 150px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.qimen-cell:hover {
+    background-color: #e9ecef;
+}
+
+.palace-name {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.qimen-cell h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.qimen-cell p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.star-text {
+    color: #e74c3c;
+}
+
+.door-text {
+    color: #3498db;
+}
+
+.deity-text {
+    color: #9b59b6;
+}
+
+.stem-text {
+    color: #2ecc71;
+}
+
+.branch-text {
+    color: #f39c12;
+}
+
+/* 解读区域 */
+.interpretation-section {
+    margin-top: 30px;
+}
+
+.overall-interpretation {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #e67e22;
+    border-radius: 0 4px 4px 0;
+}
+
+.interpretation-section h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.interpretation-section p {
+    margin-bottom: 15px;
+}
+
+.interpretation-section ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.interpretation-section li {
+    margin-bottom: 5px;
+}
+
+.interpretation-note {
+    margin-top: 20px;
+    font-style: italic;
+    color: #777;
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-dialog {
+    position: relative;
+    margin: 50px auto;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 20px;
+    color: #2c3e50;
+}
+
+.close-btn {
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.close-btn:hover {
+    color: #555;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* 宫位详解样式 */
+.palace-interpretation h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.palace-interpretation h4 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #e67e22;
+}
+
+.palace-interpretation p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* 页脚样式 */
+.footer {
+    margin-top: 30px;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #2c3e50;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* 错误消息样式 */
+.error-message {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* 加载状态样式 */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #e67e22;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+.loading p {
+    color: #fff;
+    font-size: 18px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+

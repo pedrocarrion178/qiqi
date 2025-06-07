@@ -1,0 +1,193 @@
+/**
+ * 响应式样式
+ */
+
+/* 大屏幕设备 (桌面电脑, 1200px 及以上) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .qimen-chart {
+        grid-template-columns: repeat(3, 180px);
+        grid-template-rows: repeat(3, 180px);
+    }
+    
+    .palace-cell {
+        font-size: 14px;
+    }
+}
+
+/* 中等屏幕设备 (平板电脑, 992px 到 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .qimen-chart {
+        grid-template-columns: repeat(3, 160px);
+        grid-template-rows: repeat(3, 160px);
+    }
+    
+    .palace-cell {
+        font-size: 13px;
+    }
+}
+
+/* 小屏幕设备 (横向平板电脑, 768px 到 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .input-section, .chart-section {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .qimen-chart {
+        grid-template-columns: repeat(3, 140px);
+        grid-template-rows: repeat(3, 140px);
+        margin: 0 auto;
+    }
+    
+    .palace-cell {
+        font-size: 12px;
+    }
+}
+
+/* 超小屏幕设备 (手机, 767px 及以下) */
+@media (max-width: 767px) {
+    .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .input-section, .chart-section {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .qimen-chart {
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        margin: 0 auto;
+    }
+    
+    .palace-cell {
+        font-size: 10px;
+        padding: 5px;
+    }
+    
+    .palace-name {
+        font-size: 12px;
+    }
+    
+    .palace-content {
+        font-size: 9px;
+    }
+    
+    .form-group {
+        margin-bottom: 10px;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+    }
+    
+    .form-control {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .modal-content {
+        width: 90%;
+        max-height: 80vh;
+        padding: 15px;
+    }
+    
+    .modal-title {
+        font-size: 18px;
+    }
+    
+    .interpretation-section h3 {
+        font-size: 16px;
+    }
+    
+    .interpretation-section p {
+        font-size: 14px;
+    }
+}
+
+/* 超小屏幕设备 (小型手机, 576px 及以下) */
+@media (max-width: 576px) {
+    .qimen-chart {
+        grid-template-columns: repeat(3, 90px);
+        grid-template-rows: repeat(3, 90px);
+    }
+    
+    .palace-cell {
+        font-size: 9px;
+        padding: 3px;
+    }
+    
+    .palace-name {
+        font-size: 11px;
+    }
+    
+    .palace-content {
+        font-size: 8px;
+    }
+    
+    .header h1 {
+        font-size: 20px;
+    }
+    
+    .header p {
+        font-size: 12px;
+    }
+    
+    .form-group label {
+        font-size: 12px;
+    }
+    
+    .form-control {
+        padding: 6px;
+        font-size: 12px;
+    }
+    
+    .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .modal-content {
+        padding: 10px;
+    }
+    
+    .modal-title {
+        font-size: 16px;
+    }
+    
+    .interpretation-section h3 {
+        font-size: 14px;
+    }
+    
+    .interpretation-section p {
+        font-size: 12px;
+    }
+}
+

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇门遁甲排盘 - 线框图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #faf2e4;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        header p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        
+        .input-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            border-right: 1px solid #eee;
+        }
+        
+        .input-section h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .radio-group input {
+            margin-right: 5px;
+            width: auto;
+        }
+        
+        .submit-btn {
+            background-color: #d4ac0d;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #f39c12;
+        }
+        
+        .chart-section {
+            flex: 2;
+            min-width: 400px;
+            padding: 20px;
+        }
+        
+        .chart-section h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .qimen-chart {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 4px;
+            max-width: 500px;
+            margin: 0 auto;
+            aspect-ratio: 1/1;
+        }
+        
+        .qimen-cell {
+            border: 2px solid #2c3e50;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #ecf0f1;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        
+        .qimen-cell:hover {
+            background-color: #d4ac0d;
+            color: #fff;
+        }
+        
+        .qimen-cell h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .qimen-cell p {
+            font-size: 14px;
+            margin: 2px 0;
+        }
+        
+        .qimen-cell .palace-name {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-weight: bold;
+            color: #4a235a;
+        }
+        
+        .qimen-cell .star {
+            color: #e74c3c;
+        }
+        
+        .qimen-cell .door {
+            color: #16a085;
+        }
+        
+        .qimen-cell .deity {
+            color: #8e44ad;
+        }
+        
+        .interpretation-section {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .interpretation-section h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 20px;
+        }
+        
+        .interpretation-content {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            border-left: 4px solid #d4ac0d;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .input-section {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .qimen-chart {
+                max-width: 100%;
+            }
+            
+            .qimen-cell h3 {
+                font-size: 16px;
+            }
+            
+            .qimen-cell p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>奇门遁甲在线排盘系统</h1>
+            <p>输入出生时间，获取个人奇门盘及详细解读</p>
+        </header>
+        
+        <div class="main-content">
+            <section class="input-section">
+                <h2>输入信息</h2>
+                <form id="qimen-form">
+                    <div class="form-group">
+                        <label for="year">出生年份</label>
+                        <select id="year" name="year">
+                            <option value="">请选择年份</option>
+                            <!-- 年份选项将由JS动态生成 -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="month">出生月份</label>
+                        <select id="month" name="month">
+                            <option value="">请选择月份</option>
+                            <!-- 月份选项将由JS动态生成 -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="day">出生日期</label>
+                        <select id="day" name="day">
+                            <option value="">请选择日期</option>
+                            <!-- 日期选项将由JS动态生成 -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hour">出生时辰</label>
+                        <select id="hour" name="hour">
+                            <option value="">请选择时辰</option>
+                            <option value="子">子时 (23:00-01:00)</option>
+                            <option value="丑">丑时 (01:00-03:00)</option>
+                            <option value="寅">寅时 (03:00-05:00)</option>
+                            <option value="卯">卯时 (05:00-07:00)</option>
+                            <option value="辰">辰时 (07:00-09:00)</option>
+                            <option value="巳">巳时 (09:00-11:00)</option>
+                            <option value="午">午时 (11:00-13:00)</option>
+                            <option value="未">未时 (13:00-15:00)</option>
+                            <option value="申">申时 (15:00-17:00)</option>
+                            <option value="酉">酉时 (17:00-19:00)</option>
+                            <option value="戌">戌时 (19:00-21:00)</option>
+                            <option value="亥">亥时 (21:00-23:00)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>遁类选择</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="dunType" value="yang" checked> 阳遁
+                            </label>
+                            <label>
+                                <input type="radio" name="dunType" value="yin"> 阴遁
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="submit-btn">生成奇门盘</button>
+                </form>
+            </section>
+            
+            <section class="chart-section">
+                <h2>奇门遁甲排盘</h2>
+                <div class="qimen-chart">
+                    <!-- 九宫格排盘 -->
+                    <div class="qimen-cell" data-palace="4">
+                        <span class="palace-name">巽宫</span>
+                        <h3>巽四宫</h3>
+                        <p class="star">九星: 禄存星</p>
+                        <p class="door">八门: 休门</p>
+                        <p class="deity">八神: 腾蛇</p>
+                        <p>天盘: 丙</p>
+                        <p>地盘: 辰</p>
+                    </div>
+                    <div class="qimen-cell" data-palace="9">
+                        <span class="palace-name">离宫</span>
+                        <h3>离九宫</h3>
+                        <p class="star">九星: 武曲星</p>
+                        <p class="door">八门: 生门</p>
+                        <p class="deity">八神: 太阴</p>
+                        <p>天盘: 丁</p>
+                        <p>地盘: 巳</p>
+                    </div>
+                    <div class="qimen-cell" data-palace="2">
+                        <span class="palace-name">坤宫</span>
+                        <h3>坤二宫</h3>
+                        <p class="star">九星: 贪狼星</p>
+                        <p class="door">八门: 伤门</p>
+                        <p class="deity">八神: 六合</p>
+                        <p>天盘: 戊</p>
+                        <p>地盘: 未</p>
+                    </div>
+                    <div class="qimen-cell" data-palace="3">
+                        <span class="palace-name">震宫</span>
+                        <h3>震三宫</h3>
+                        <p class="star">九星: 巨门星</p>
+                        <p class="door">八门: 杜门</p>
+                        <p class="deity">八神: 白虎</p>
+                        <p>天盘: 乙</p>
+                        <p>地盘: 卯</p>
+                    </div>
+                    <div class="qimen-cell" data-palace="5">
+                        <span class="palace-name">中宫</span>
+                        <h3>中五宫</h3>
+                        <p class="star">九星: 廉贞星</p>
+                        <p class="door">八门: 死门</p>
+                        <p class="deity">八神: 玄武</p>
+                        <p>天盘: 己</p>
+                        <p>地盘: 午</p>
+                    </div>
+                    <div class="qimen-cell" data-palace="7">
+                        <span class="palace-name">兑宫</span>
+                        <h3>兑七宫</h3>
+                        <p class="star">九星: 破军星</p>
+                        <p class="door">八门: 惊门</p>
+                        <p class="deity">八神: 九地</p>
+                        <p>天盘: 辛</p>
+                        <p>地盘: 酉</p>
+                    </div>
+                    <div class="qimen-cell" data-palace="8">
+                        <span class="palace-name">艮宫</span>
+                        <h3>艮八宫</h3>
+                        <p class="star">九星: 左辅星</p>
+                        <p class="door">八门: 开门</p>
+                        <p class="deity">八神: 九天</p>
+                        <p>天盘: 壬</p>
+                        <p>地盘: 子</p>
+                    </div>
+                    <div class="qimen-cell" data-palace="1">
+                        <span class="palace-name">坎宫</span>
+                        <h3>坎一宫</h3>
+                        <p class="star">九星: 天蓬星</p>
+                        <p class="door">八门: 景门</p>
+                        <p class="deity">八神: 值符</p>
+                        <p>天盘: 癸</p>
+                        <p>地盘: 亥</p>
+                    </div>
+                    <div class="qimen-cell" data-palace="6">
+                        <span class="palace-name">乾宫</span>
+                        <h3>乾六宫</h3>
+                        <p class="star">九星: 右弼星</p>
+                        <p class="door">八门: 开门</p>
+                        <p class="deity">八神: 朱雀</p>
+                        <p>天盘: 庚</p>
+                        <p>地盘: 申</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <section class="interpretation-section">
+            <h2>整体解读</h2>
+            <div class="interpretation-content">
+                <p>这是一个示例解读内容，实际内容将根据排盘结果动态生成。</p>
+                <p>奇门遁甲排盘显示，您目前的整体运势较为平稳，事业方面有贵人相助，但需注意人际关系的处理。财运方面有小幅波动，建议稳健投资。健康方面需要注意休息，避免过度劳累。</p>
+                <p>点击九宫格中的任意宫位，可查看该宫位的详细解读。</p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2025 奇门遁甲在线排盘系统 | 仅供学习参考</p>
+        </footer>
+    </div>
+    
+    <!-- 模态框 - 用于显示宫位详解 -->
+    <div class="modal" id="palace-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title">宫位详解</h2>
+            <div id="modal-content">
+                <!-- 详细解读内容将动态插入 -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 这里将添加JavaScript代码
+        // 1. 动态生成年月日选项
+        // 2. 实现排盘功能
+        // 3. 处理宫位点击事件
+        // 4. 响应式调整
+        
+        // 示例代码 - 生成年份选项
+        const yearSelect = document.getElementById('year');
+        const currentYear = new Date().getFullYear();
+        
+        for (let year = 1900; year <= currentYear; year++) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year + '年';
+            yearSelect.appendChild(option);
+        }
+        
+        // 示例代码 - 生成月份选项
+        const monthSelect = document.getElementById('month');
+        
+        for (let month = 1; month <= 12; month++) {
+            const option = document.createElement('option');
+            option.value = month;
+            option.textContent = month + '月';
+            monthSelect.appendChild(option);
+        }
+        
+        // 示例代码 - 模态框功能
+        const modal = document.getElementById('palace-modal');
+        const closeBtn = document.querySelector('.close-btn');
+        const qimenCells = document.querySelectorAll('.qimen-cell');
+        
+        qimenCells.forEach(cell => {
+            cell.addEventListener('click', function() {
+                const palaceId = this.getAttribute('data-palace');
+                const palaceName = this.querySelector('h3').textContent;
+                
+                document.getElementById('modal-title').textContent = palaceName + ' 详解';
+                document.getElementById('modal-content').innerHTML = `
+                    <p>这是 ${palaceName} 的详细解读示例。实际内容将根据排盘结果动态生成。</p>
+                    <p>此宫位代表了您生活中的某个特定领域，根据当前的奇门盘，可以解读出以下信息：</p>
+                    <ul>
+                        <li>事业方面：有机遇但需谨慎把握</li>
+                        <li>财运方面：稳中有进，适合稳健投资</li>
+                        <li>感情方面：关系和谐，沟通顺畅</li>
+                        <li>健康方面：需注意休息，避免过度劳累</li>
+                    </ul>
+                    <p>建议：保持积极心态，把握当下机遇，同时做好风险防范。</p>
+                `;
+                
+                modal.style.display = 'block';
+            });
+        });
+        
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+

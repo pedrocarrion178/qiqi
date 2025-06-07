@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇门遁甲在线排盘系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>奇门遁甲在线排盘系统</h1>
+            <p>输入出生时间，获取个人奇门盘及详细解读</p>
+        </header>
+        
+        <div class="main-content">
+            <section class="input-section">
+                <h2>输入信息</h2>
+                <form id="qimen-form">
+                    <div class="form-group">
+                        <label for="year">出生年份</label>
+                        <select id="year" name="year" required>
+                            <option value="">请选择年份</option>
+                            <!-- 年份选项将由JS动态生成 -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="month">出生月份</label>
+                        <select id="month" name="month" required>
+                            <option value="">请选择月份</option>
+                            <!-- 月份选项将由JS动态生成 -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="day">出生日期</label>
+                        <select id="day" name="day" required>
+                            <option value="">请选择日期</option>
+                            <!-- 日期选项将由JS动态生成 -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hour">出生时辰</label>
+                        <select id="hour" name="hour" required>
+                            <option value="">请选择时辰</option>
+                            <option value="子">子时 (23:00-01:00)</option>
+                            <option value="丑">丑时 (01:00-03:00)</option>
+                            <option value="寅">寅时 (03:00-05:00)</option>
+                            <option value="卯">卯时 (05:00-07:00)</option>
+                            <option value="辰">辰时 (07:00-09:00)</option>
+                            <option value="巳">巳时 (09:00-11:00)</option>
+                            <option value="午">午时 (11:00-13:00)</option>
+                            <option value="未">未时 (13:00-15:00)</option>
+                            <option value="申">申时 (15:00-17:00)</option>
+                            <option value="酉">酉时 (17:00-19:00)</option>
+                            <option value="戌">戌时 (19:00-21:00)</option>
+                            <option value="亥">亥时 (21:00-23:00)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>遁类选择</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="dunType" value="yang" checked> 阳遁
+                            </label>
+                            <label>
+                                <input type="radio" name="dunType" value="yin"> 阴遁
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="generate-btn" class="submit-btn">生成奇门盘</button>
+                </form>
+            </section>
+            
+            <section class="chart-section">
+                <h2>奇门遁甲排盘</h2>
+                <div class="chart-info" id="chart-info">
+                    <p>请输入出生时间并点击"生成奇门盘"按钮</p>
+                </div>
+                <div class="qimen-chart" id="qimen-chart">
+                    <!-- 九宫格排盘将由JS动态生成 -->
+                </div>
+            </section>
+        </div>
+        
+        <section class="interpretation-section">
+            <h2>整体解读</h2>
+            <div class="interpretation-content" id="overall-interpretation">
+                <p>请先生成奇门盘，解读内容将在此显示。</p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2025 奇门遁甲在线排盘系统 | 仅供学习参考</p>
+        </footer>
+    </div>
+    
+    <!-- 模态框 - 用于显示宫位详解 -->
+    <div class="modal" id="palace-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title">宫位详解</h2>
+            <div id="modal-content">
+                <!-- 详细解读内容将动态插入 -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/qimen-core.js"></script>
+    <script src="js/interpretation.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
